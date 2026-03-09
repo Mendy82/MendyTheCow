@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games · Mendy the Cow</title>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Copy all your existing styles here */
+        /* (same as homepage but adjust center content) */
+        
+        /* Additional styles for games grid */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+            max-width: 500px;
+        }
+        
+        .game-card {
+            background: white;
+            border: 2px solid #04AA6D;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(4, 170, 109, 0.2);
+        }
+        
+        .game-card i {
+            font-size: 3rem;
+            color: #04AA6D;
+            margin-bottom: 10px;
+        }
+        
+        .game-card h3 {
+            color: #282A35;
+            margin-bottom: 5px;
+        }
+        
+        .game-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Same left nav and right sidebar structure -->
+    <!-- Center content becomes: -->
+    <div class="center-stage">
+        <div class="avatar-wrapper" style="margin-bottom: 0.5rem;">
+            <div class="green-splash" style="width: 200px; height: 200px;"></div>
+            <div class="cow-avatar-container" style="width: 150px; height: 150px;">
+                <img src="cow.jpg" alt="Mendy" class="cow-avatar">
+            </div>
+        </div>
+        <h2 style="color: #04AA6D; margin-bottom: 20px;">🎮 Mendy's Games</h2>
+        
+        <div class="games-grid">
+            <div class="game-card">
+                <i class="fas fa-puzzle-piece"></i>
+                <h3>Memory Match</h3>
+                <p>Find the matching pairs</p>
+            </div>
+            <div class="game-card">
+                <i class="fas fa-robot"></i>
+                <h3>Mendy's Quest</h3>
+                <p>Help her find passion</p>
+            </div>
+            <div class="game-card">
+                <i class="fas fa-dice"></i>
+                <h3>Green Dice</h3>
+                <p>Roll your luck</p>
+            </div>
+            <div class="game-card">
+                <i class="fas fa-code"></i>
+                <h3>Code Challenge</h3>
+                <p>Learn to code games</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
