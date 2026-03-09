@@ -14,9 +14,9 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #ffffff;
-            color: #2c3e2f;
+            font-family: 'Segoe UI', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f1f1f1;  /* W3Schools light gray background */
+            color: #282A35;  /* W3Schools dark blue-gray for text */
             height: 100vh;
             display: flex;
             align-items: center;
@@ -33,15 +33,15 @@
             align-items: center;
         }
 
-        /* --- LEFT SIDEBAR with Font Awesome --- */
+        /* --- LEFT SIDEBAR with W3Schools green accent --- */
         .left-nav {
             padding: 2rem 2rem 2rem 2.5rem;
             font-size: 1.3rem;
             font-weight: 500;
             line-height: 2.8;
-            border-right: 2px solid #b7d6b3;
+            border-right: 2px solid #04AA6D;  /* W3Schools green */
             height: fit-content;
-            color: #3a5e3d;
+            color: #282A35;
         }
 
         .nav-item {
@@ -51,12 +51,12 @@
             cursor: pointer;
             transition: 0.2s;
             padding: 0.2rem 0;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Segoe UI', sans-serif;
         }
 
         .nav-item i {
             font-size: 1.5rem;
-            color: #5f8b4b;
+            color: #04AA6D;  /* W3Schools green for icons */
             transition: 0.2s;
             width: 32px;
             display: inline-flex;
@@ -64,12 +64,12 @@
         }
 
         .nav-item:hover {
-            color: #1f3b22;
+            color: #04AA6D;
             transform: translateX(8px);
         }
 
         .nav-item:hover i {
-            color: #2c5e2e;
+            color: #059862;  /* darker green on hover */
             transform: scale(1.1);
         }
 
@@ -85,7 +85,7 @@
             position: relative;
         }
 
-        /* Avatar container with green splash shape behind it */
+        /* Avatar container with larger green splash behind it */
         .avatar-wrapper {
             position: relative;
             margin-bottom: 1.2rem;
@@ -94,16 +94,17 @@
             align-items: center;
         }
 
-        /* Green splash shape (like in the sample GIF) */
+        /* Bigger green splash shape (increased size) */
         .green-splash {
             position: absolute;
-            width: 320px;
-            height: 320px;
-            background: linear-gradient(135deg, #b7d6b3 0%, #5f8b4b 100%);
+            width: 400px;  /* Increased from 320px */
+            height: 400px; /* Increased from 320px */
+            background: linear-gradient(135deg, #04AA6D 0%, #059862 100%); /* W3Schools green gradient */
             border-radius: 42% 58% 70% 30% / 40% 50% 50% 60%;
-            animation: morph 8s ease-in-out infinite;
-            opacity: 0.5;
+            animation: morph 10s ease-in-out infinite;
+            opacity: 0.25; /* More subtle to match W3Schools clean style */
             z-index: 1;
+            filter: blur(2px); /* Soft blur for that "splash" effect */
         }
 
         @keyframes morph {
@@ -114,10 +115,10 @@
                 border-radius: 55% 45% 35% 65% / 50% 40% 60% 50%;
             }
             50% {
-                border-radius: 30% 70% 50% 50% / 60% 40% 60% 40%;
+                border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%;
             }
             75% {
-                border-radius: 70% 30% 45% 55% / 40% 60% 40% 60%;
+                border-radius: 35% 65% 55% 45% / 40% 50% 50% 60%;
             }
         }
 
@@ -125,12 +126,12 @@
             width: 280px;
             height: 280px;
             border-radius: 50%;
-            background: #f0f7ed;
+            background: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 4px solid #ffffff;
-            box-shadow: 0 15px 30px -8px rgba(58, 94, 61, 0.3);
+            border: 4px solid #04AA6D;  /* W3Schools green border */
+            box-shadow: 0 15px 30px -8px rgba(4, 170, 109, 0.3);
             overflow: hidden;
             transition: transform 0.3s ease;
             position: relative;
@@ -139,6 +140,7 @@
 
         .cow-avatar-container:hover {
             transform: scale(1.02);
+            border-color: #059862;
         }
 
         .cow-avatar {
@@ -153,7 +155,7 @@
             font-size: 3.5rem;
             font-weight: 800;
             letter-spacing: -0.02em;
-            color: #1f3b22;
+            color: #282A35;  /* W3Schools dark text */
             line-height: 1.1;
             margin-bottom: 0.25rem;
             text-transform: uppercase;
@@ -167,12 +169,12 @@
 
         .mendy-name i {
             font-size: 3rem;
-            color: #b7d6b3;
-            opacity: 0.6;
+            color: #04AA6D;
+            opacity: 0.8;
         }
 
         .mendy-name span {
-            color: #5f8b4b;
+            color: #059862;
             font-style: italic;
             font-weight: 600;
         }
@@ -180,13 +182,13 @@
         .description {
             max-width: 500px;
             font-size: 1.3rem;
-            color: #4a6741;
-            background: #f8fff5;
+            color: #282A35;
+            background: white;
             padding: 0.8rem 2rem;
             border-radius: 50px;
-            border: 2px solid #b7d6b3;
+            border: 2px solid #04AA6D;
             margin: 1rem 0 2rem 0;
-            box-shadow: 0 6px 0 #d0e3cc;
+            box-shadow: 0 6px 0 #e7e9f2;  /* W3Schools light shadow */
             font-weight: 500;
             display: flex;
             align-items: center;
@@ -197,11 +199,11 @@
 
         .description i {
             font-size: 1.4rem;
-            color: #8fb389;
+            color: #04AA6D;
         }
 
         .passion-button {
-            background: #2c5e2e;
+            background: #04AA6D;  /* W3Schools "Try it Yourself" green */
             color: white;
             border: none;
             padding: 1rem 3.5rem;
@@ -209,10 +211,10 @@
             font-weight: bold;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 8px 0 #1a3b1c;
+            box-shadow: 0 8px 0 #059862;
             transition: 0.1s linear;
             letter-spacing: 1px;
-            border: 2px solid #b7d6b3;
+            border: 2px solid #059862;
             text-transform: uppercase;
             display: flex;
             align-items: center;
@@ -228,11 +230,11 @@
 
         .passion-button:hover {
             transform: translateY(4px);
-            box-shadow: 0 4px 0 #1a3b1c;
-            background: #1f4b21;
+            box-shadow: 0 4px 0 #035f44;
+            background: #059862;
         }
 
-        /* --- RIGHT SIDEBAR with icons --- */
+        /* --- RIGHT SIDEBAR with W3Schools style --- */
         .right-whitespace {
             display: flex;
             flex-direction: column;
@@ -240,8 +242,8 @@
             align-items: flex-end;
             height: 100%;
             padding: 2rem;
-            border-left: 2px solid #b7d6b3;
-            color: #5f8b4b;
+            border-left: 2px solid #04AA6D;
+            color: #282A35;
             font-size: 1.1rem;
             text-align: right;
             gap: 15px;
@@ -256,16 +258,16 @@
 
         .mood-item i {
             font-size: 1.3rem;
-            color: #8fb389;
+            color: #04AA6D;
             order: 1;
         }
 
         .xhs-handle {
-            background: #f0f7ed;
+            background: white;
             padding: 0.7rem 1.2rem;
             border-radius: 40px;
             font-size: 0.95rem;
-            border: 1px dashed #8fb389;
+            border: 1px dashed #04AA6D;
             margin-top: 1.5rem;
             font-style: normal;
             font-family: monospace;
@@ -276,7 +278,7 @@
 
         .xhs-handle i {
             font-size: 1.2rem;
-            color: #e4405f;
+            color: #04AA6D;
         }
 
         .signature {
@@ -284,17 +286,18 @@
             bottom: 12px;
             right: 20px;
             font-size: 0.85rem;
-            color: #b7d6b3;
+            color: #282A35;
             font-weight: 500;
             letter-spacing: 1px;
             display: flex;
             align-items: center;
             gap: 6px;
+            opacity: 0.7;
         }
 
         .signature i {
             font-size: 0.9rem;
-            color: #8fb389;
+            color: #04AA6D;
         }
 
         @media (max-width: 800px) {
@@ -304,14 +307,14 @@
             .left-nav { font-size: 1.1rem; padding: 1.5rem; }
             .mendy-name { font-size: 2.5rem; }
             .cow-avatar-container { width: 200px; height: 200px; }
-            .green-splash { width: 240px; height: 240px; }
+            .green-splash { width: 300px; height: 300px; }
         }
     </style>
 </head>
 <body>
 
 <div class="main-grid">
-    <!-- LEFT: navigation with Font Awesome -->
+    <!-- LEFT: navigation with W3Schools style -->
     <nav class="left-nav">
         <div class="nav-item">
             <i class="fas fa-home"></i>
@@ -335,10 +338,10 @@
         </div>
     </nav>
 
-    <!-- CENTER: Mendy the Cow with green splash -->
+    <!-- CENTER: Mendy the Cow with larger green splash -->
     <div class="center-stage">
         <div class="avatar-wrapper">
-            <!-- Green splash shape behind avatar -->
+            <!-- Bigger green splash shape behind avatar -->
             <div class="green-splash"></div>
             <div class="cow-avatar-container">
                 <img src="cow.jpg" alt="Mendy the Cow" class="cow-avatar">
@@ -353,14 +356,14 @@
             that has lost her passion
             <i class="fas fa-cloud-sun"></i>
         </div>
-        <button class="passion-button" onclick="alert('🐄 Maybe she found it...')">
+        <button class="passion-button" onclick="alert('🐄 Moo! Maybe she found it on W3Schools...')">
             <i class="fas fa-search"></i>
             find her passion
             <i class="fas fa-heart"></i>
         </button>
     </div>
 
-    <!-- RIGHT: with Font Awesome -->
+    <!-- RIGHT: with W3Schools style -->
     <div class="right-whitespace">
         <div class="mood-item">
             <span>lost & wandering</span>
