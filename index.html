@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mendy the Cow · Lost Passion</title>
-    <!-- Font Awesome CDN (more reliable) -->
+    <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -82,6 +82,43 @@
             text-align: center;
             padding: 1rem;
             height: 100%;
+            position: relative;
+        }
+
+        /* Avatar container with green splash shape behind it */
+        .avatar-wrapper {
+            position: relative;
+            margin-bottom: 1.2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Green splash shape (like in the sample GIF) */
+        .green-splash {
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            background: linear-gradient(135deg, #b7d6b3 0%, #5f8b4b 100%);
+            border-radius: 42% 58% 70% 30% / 40% 50% 50% 60%;
+            animation: morph 8s ease-in-out infinite;
+            opacity: 0.5;
+            z-index: 1;
+        }
+
+        @keyframes morph {
+            0%, 100% {
+                border-radius: 42% 58% 70% 30% / 40% 50% 50% 60%;
+            }
+            25% {
+                border-radius: 55% 45% 35% 65% / 50% 40% 60% 50%;
+            }
+            50% {
+                border-radius: 30% 70% 50% 50% / 60% 40% 60% 40%;
+            }
+            75% {
+                border-radius: 70% 30% 45% 55% / 40% 60% 40% 60%;
+            }
         }
 
         .cow-avatar-container {
@@ -92,11 +129,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1.2rem;
-            border: 4px solid #b7d6b3;
-            box-shadow: 0 15px 30px -8px rgba(58, 94, 61, 0.15);
+            border: 4px solid #ffffff;
+            box-shadow: 0 15px 30px -8px rgba(58, 94, 61, 0.3);
             overflow: hidden;
             transition: transform 0.3s ease;
+            position: relative;
+            z-index: 2;
         }
 
         .cow-avatar-container:hover {
@@ -123,6 +161,8 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
+            position: relative;
+            z-index: 2;
         }
 
         .mendy-name i {
@@ -151,6 +191,8 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            position: relative;
+            z-index: 2;
         }
 
         .description i {
@@ -176,6 +218,8 @@
             align-items: center;
             justify-content: center;
             gap: 12px;
+            position: relative;
+            z-index: 2;
         }
 
         .passion-button i {
@@ -260,6 +304,7 @@
             .left-nav { font-size: 1.1rem; padding: 1.5rem; }
             .mendy-name { font-size: 2.5rem; }
             .cow-avatar-container { width: 200px; height: 200px; }
+            .green-splash { width: 240px; height: 240px; }
         }
     </style>
 </head>
@@ -290,10 +335,14 @@
         </div>
     </nav>
 
-    <!-- CENTER: Mendy the Cow -->
+    <!-- CENTER: Mendy the Cow with green splash -->
     <div class="center-stage">
-        <div class="cow-avatar-container">
-            <img src="cow.jpg" alt="Mendy the Cow" class="cow-avatar">
+        <div class="avatar-wrapper">
+            <!-- Green splash shape behind avatar -->
+            <div class="green-splash"></div>
+            <div class="cow-avatar-container">
+                <img src="cow.jpg" alt="Mendy the Cow" class="cow-avatar">
+            </div>
         </div>
         <div class="mendy-name">
             <i class="fas fa-cow"></i>
