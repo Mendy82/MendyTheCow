@@ -7,84 +7,558 @@
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Copy all your existing styles here */
-        /* (same as homepage but adjust center content) */
-        
-        /* Additional styles for games grid */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f1f1f1;
+            color: #282A35;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Same navigation structure as homepage */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 260px 1fr 240px;
+            width: 100vw;
+            min-height: 100vh;
+        }
+
+        /* Left nav - identical to homepage */
+        .left-nav {
+            padding: 2rem 2rem 2rem 2.5rem;
+            font-size: 1.3rem;
+            font-weight: 500;
+            line-height: 2.8;
+            border-right: 2px solid #04AA6D;
+            height: fit-content;
+            color: #282A35;
+            position: sticky;
+            top: 0;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: 0.2s;
+            padding: 0.2rem 0;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .nav-item i {
+            font-size: 1.5rem;
+            color: #04AA6D;
+            transition: 0.2s;
+            width: 32px;
+        }
+
+        .nav-item:hover {
+            color: #04AA6D;
+            transform: translateX(8px);
+        }
+
+        .nav-item.active {
+            color: #04AA6D;
+            font-weight: 600;
+        }
+
+        .nav-item.active i {
+            color: #04AA6D;
+        }
+
+        /* Center content - Games page */
+        .center-stage {
+            padding: 2rem;
+            overflow-y: auto;
+            max-height: 100vh;
+        }
+
+        /* Page header with Mendy mini avatar */
+        .page-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 2rem;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 20px;
+            border: 2px solid #04AA6D;
+        }
+
+        .mini-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid #04AA6D;
+            overflow: hidden;
+        }
+
+        .mini-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .header-text h1 {
+            font-size: 2.5rem;
+            color: #282A35;
+        }
+
+        .header-text h1 i {
+            color: #04AA6D;
+            margin-right: 10px;
+        }
+
+        .header-text p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* Filter tags - like the example site */
+        .filter-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 2.5rem;
+            background: white;
+            padding: 1.2rem;
+            border-radius: 50px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .tag {
+            padding: 8px 20px;
+            background: #f1f1f1;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #282A35;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .tag:hover {
+            background: #e4e4e4;
+        }
+
+        .tag.active {
+            background: #04AA6D;
+            color: white;
+        }
+
+        /* Games grid - inspired by the portfolio site */
         .games-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin-top: 20px;
-            max-width: 500px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 2rem;
         }
-        
+
         .game-card {
             background: white;
-            border: 2px solid #04AA6D;
-            border-radius: 15px;
-            padding: 20px;
-            text-align: center;
-            transition: 0.2s;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+            transition: 0.3s;
             cursor: pointer;
+            position: relative;
         }
-        
+
         .game-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(4, 170, 109, 0.2);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(4, 170, 109, 0.15);
+            border-color: #04AA6D;
         }
-        
-        .game-card i {
-            font-size: 3rem;
+
+        .game-image {
+            height: 160px;
+            background: linear-gradient(135deg, #04AA6D20, #05986220);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-image i {
+            font-size: 4rem;
             color: #04AA6D;
-            margin-bottom: 10px;
+            opacity: 0.7;
+            transition: 0.3s;
         }
-        
-        .game-card h3 {
+
+        .game-card:hover .game-image i {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+
+        .game-tags {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            display: flex;
+            gap: 5px;
+        }
+
+        .game-tag {
+            background: rgba(4, 170, 109, 0.9);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            backdrop-filter: blur(4px);
+        }
+
+        .game-info {
+            padding: 1.5rem;
+        }
+
+        .game-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
             color: #282A35;
-            margin-bottom: 5px;
         }
-        
-        .game-card p {
+
+        .game-info p {
             color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .game-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #f0f0f0;
+            padding-top: 12px;
+        }
+
+        .game-platform {
+            display: flex;
+            gap: 8px;
+            color: #04AA6D;
+        }
+
+        .game-platform i {
+            font-size: 1.1rem;
+        }
+
+        .play-button {
+            background: #04AA6D;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 25px;
             font-size: 0.9rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .play-button:hover {
+            background: #059862;
+            transform: scale(1.05);
+        }
+
+        /* Right sidebar - same as homepage */
+        .right-whitespace {
+            padding: 2rem;
+            border-left: 2px solid #04AA6D;
+            color: #282A35;
+            height: 100vh;
+            position: sticky;
+            top: 0;
+        }
+
+        .mood-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-style: italic;
+            margin-bottom: 15px;
+            justify-content: flex-end;
+        }
+
+        .mood-item i {
+            color: #04AA6D;
+        }
+
+        .xhs-handle {
+            background: white;
+            padding: 0.7rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            border: 1px dashed #04AA6D;
+            margin-top: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        .signature {
+            position: fixed;
+            bottom: 12px;
+            right: 20px;
+            font-size: 0.85rem;
+            color: #282A35;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 1000px) {
+            .main-grid {
+                grid-template-columns: 200px 1fr 180px;
+            }
+        }
+
+        @media (max-width: 800px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+            .left-nav, .right-whitespace {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Same left nav and right sidebar structure -->
-    <!-- Center content becomes: -->
-    <div class="center-stage">
-        <div class="avatar-wrapper" style="margin-bottom: 0.5rem;">
-            <div class="green-splash" style="width: 200px; height: 200px;"></div>
-            <div class="cow-avatar-container" style="width: 150px; height: 150px;">
-                <img src="cow.jpg" alt="Mendy" class="cow-avatar">
+    <div class="main-grid">
+        <!-- LEFT NAVIGATION (same as homepage) -->
+        <nav class="left-nav">
+            <a href="index.html" style="text-decoration: none; color: inherit;">
+                <div class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </div>
+            </a>
+            <a href="lab.html" style="text-decoration: none; color: inherit;">
+                <div class="nav-item">
+                    <i class="fas fa-flask"></i>
+                    <span>Lab</span>
+                </div>
+            </a>
+            <a href="notes.html" style="text-decoration: none; color: inherit;">
+                <div class="nav-item">
+                    <i class="fas fa-book"></i>
+                    <span>Notes</span>
+                </div>
+            </a>
+            <a href="games.html" style="text-decoration: none; color: inherit;">
+                <div class="nav-item active">
+                    <i class="fas fa-gamepad"></i>
+                    <span>Games</span>
+                </div>
+            </a>
+            <a href="about.html" style="text-decoration: none; color: inherit;">
+                <div class="nav-item">
+                    <i class="fas fa-info-circle"></i>
+                    <span>About</span>
+                </div>
+            </a>
+        </nav>
+
+        <!-- CENTER: Games Content -->
+        <div class="center-stage">
+            <!-- Header with Mendy -->
+            <div class="page-header">
+                <div class="mini-avatar">
+                    <img src="cow.jpg" alt="Mendy">
+                </div>
+                <div class="header-text">
+                    <h1><i class="fas fa-gamepad"></i> Mendy's Games Arcade</h1>
+                    <p>Games, experiments, and fun things Mendy made while looking for her passion</p>
+                </div>
+            </div>
+
+            <!-- Filter Tags (like the example site) -->
+            <div class="filter-tags">
+                <span class="tag active">All Games</span>
+                <span class="tag">Web</span>
+                <span class="tag">Mobile</span>
+                <span class="tag">VR</span>
+                <span class="tag">Puzzle</span>
+                <span class="tag">Action</span>
+                <span class="tag">Learning</span>
+            </div>
+
+            <!-- Games Grid - Inspired by sop-dev.com -->
+            <div class="games-grid">
+                <!-- Game 1 -->
+                <div class="game-card">
+                    <div class="game-image">
+                        <i class="fas fa-puzzle-piece"></i>
+                        <div class="game-tags">
+                            <span class="game-tag">web</span>
+                            <span class="game-tag">puzzle</span>
+                        </div>
+                    </div>
+                    <div class="game-info">
+                        <h3>Memory Match</h3>
+                        <p>A calming matching game to help Mendy remember what she loved.</p>
+                        <div class="game-meta">
+                            <div class="game-platform">
+                                <i class="fas fa-desktop"></i>
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <button class="play-button" onclick="alert('Loading game...')">Play</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Game 2 -->
+                <div class="game-card">
+                    <div class="game-image">
+                        <i class="fas fa-robot"></i>
+                        <div class="game-tags">
+                            <span class="game-tag">web</span>
+                            <span class="game-tag">adventure</span>
+                        </div>
+                    </div>
+                    <div class="game-info">
+                        <h3>Mendy's Quest</h3>
+                        <p>Help Mendy travel through green fields to find her lost passion.</p>
+                        <div class="game-meta">
+                            <div class="game-platform">
+                                <i class="fas fa-desktop"></i>
+                            </div>
+                            <button class="play-button" onclick="alert('Loading game...')">Play</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Game 3 -->
+                <div class="game-card">
+                    <div class="game-image">
+                        <i class="fas fa-dice"></i>
+                        <div class="game-tags">
+                            <span class="game-tag">mobile</span>
+                            <span class="game-tag">casual</span>
+                        </div>
+                    </div>
+                    <div class="game-info">
+                        <h3>Green Dice</h3>
+                        <p>Roll the magical green dice and see your fortune.</p>
+                        <div class="game-meta">
+                            <div class="game-platform">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <button class="play-button" onclick="alert('Loading game...')">Play</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Game 4 -->
+                <div class="game-card">
+                    <div class="game-image">
+                        <i class="fas fa-code"></i>
+                        <div class="game-tags">
+                            <span class="game-tag">learning</span>
+                            <span class="game-tag">web</span>
+                        </div>
+                    </div>
+                    <div class="game-info">
+                        <h3>Code Challenge</h3>
+                        <p>Learn to build games while helping Mendy debug her thoughts.</p>
+                        <div class="game-meta">
+                            <div class="game-platform">
+                                <i class="fas fa-desktop"></i>
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <button class="play-button" onclick="alert('Loading game...')">Play</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Game 5 - VR Experience -->
+                <div class="game-card">
+                    <div class="game-image">
+                        <i class="fas fa-vr-cardboard"></i>
+                        <div class="game-tags">
+                            <span class="game-tag">vr</span>
+                            <span class="game-tag">experience</span>
+                        </div>
+                    </div>
+                    <div class="game-info">
+                        <h3>Mendy's Dream</h3>
+                        <p>VR experience exploring the surreal world where passions hide.</p>
+                        <div class="game-meta">
+                            <div class="game-platform">
+                                <i class="fas fa-vr-cardboard"></i>
+                            </div>
+                            <button class="play-button" onclick="alert('Loading VR experience...')">Explore</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Game 6 - Action -->
+                <div class="game-card">
+                    <div class="game-image">
+                        <i class="fas fa-bolt"></i>
+                        <div class="game-tags">
+                            <span class="game-tag">action</span>
+                            <span class="game-tag">web</span>
+                        </div>
+                    </div>
+                    <div class="game-info">
+                        <h3>Lost & Found</h3>
+                        <p>Fast-paced action game about collecting lost memories.</p>
+                        <div class="game-meta">
+                            <div class="game-platform">
+                                <i class="fas fa-desktop"></i>
+                            </div>
+                            <button class="play-button" onclick="alert('Loading game...')">Play</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <h2 style="color: #04AA6D; margin-bottom: 20px;">🎮 Mendy's Games</h2>
-        
-        <div class="games-grid">
-            <div class="game-card">
-                <i class="fas fa-puzzle-piece"></i>
-                <h3>Memory Match</h3>
-                <p>Find the matching pairs</p>
+
+        <!-- RIGHT SIDEBAR (same as homepage) -->
+        <div class="right-whitespace">
+            <div class="mood-item">
+                <span>lost & wandering</span>
+                <i class="fas fa-cloud-wind"></i>
             </div>
-            <div class="game-card">
-                <i class="fas fa-robot"></i>
-                <h3>Mendy's Quest</h3>
-                <p>Help her find passion</p>
+            <div class="mood-item">
+                <span>looking for purpose</span>
+                <i class="fas fa-compass"></i>
             </div>
-            <div class="game-card">
-                <i class="fas fa-dice"></i>
-                <h3>Green Dice</h3>
-                <p>Roll your luck</p>
-            </div>
-            <div class="game-card">
-                <i class="fas fa-code"></i>
-                <h3>Code Challenge</h3>
-                <p>Learn to code games</p>
+            <div class="xhs-handle">
+                <i class="fas fa-camera"></i>
+                小红书号: 94170383890
             </div>
         </div>
     </div>
+
+    <div class="signature">
+        <i class="fas fa-pen"></i>
+        MUHAMMAD HUSNAIN
+    </div>
+
+    <!-- Simple filter functionality -->
+    <script>
+        const tags = document.querySelectorAll('.tag');
+        tags.forEach(tag => {
+            tag.addEventListener('click', function() {
+                tags.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                // Here you can add actual filtering logic
+                alert(`Filtering by: ${this.textContent}`);
+            });
+        });
+    </script>
 </body>
 </html>
