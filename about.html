@@ -11,12 +11,11 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            transition: background-color 0.3s, border-color 0.3s, color 0.3s, box-shadow 0.3s;
         }
 
         body {
             font-family: 'Segoe UI', 'Comic Sans MS', cursive, sans-serif;
-            background: #fff4e6;  /* Warm orange-tinted background */
-            color: #442200;
             min-height: 100vh;
         }
 
@@ -27,12 +26,13 @@
             min-height: 100vh;
         }
 
-        /* Left nav - orange theme */
+        /* Left nav - theme variables will control colors */
         .left-nav {
             padding: 2rem;
-            border-right: 3px solid #ff9933;
+            border-right-width: 3px;
+            border-right-style: solid;
             background: white;
-            box-shadow: 2px 0 10px rgba(255, 153, 51, 0.1);
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
         }
 
         .nav-item {
@@ -40,31 +40,29 @@
             align-items: center;
             gap: 15px;
             padding: 1rem 0;
-            color: #442200;
             text-decoration: none;
             transition: 0.3s;
             font-size: 1.2rem;
-            border-bottom: 1px dashed #ffcc99;
+            border-bottom-width: 1px;
+            border-bottom-style: dashed;
         }
 
         .nav-item i {
-            color: #ff9933;
             width: 30px;
             font-size: 1.3rem;
         }
 
         .nav-item:hover {
-            color: #ff6600;
             transform: translateX(10px) rotate(2deg);
         }
 
         .nav-item.active {
-            color: #ff6600;
             font-weight: bold;
-            border-bottom: 2px solid #ff6600;
+            border-bottom-width: 2px;
+            border-bottom-style: solid;
         }
 
-        /* Center content - About page */
+        /* Center content */
         .center-stage {
             padding: 2rem;
             overflow-y: auto;
@@ -74,13 +72,13 @@
         /* Fun header with cow ears */
         .about-header {
             position: relative;
-            background: linear-gradient(135deg, #ff9933, #ff6600);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             padding: 3rem 2rem;
             border-radius: 60px 60px 30px 30px;
             margin-bottom: 2rem;
             text-align: center;
-            box-shadow: 0 10px 0 #cc5500;
+            box-shadow: 0 10px 0 var(--shadow);
         }
 
         /* Cow ears decoration */
@@ -96,7 +94,7 @@
         .ear {
             width: 40px;
             height: 60px;
-            background: #ff9933;
+            background: var(--primary);
             border-radius: 50% 50% 0 0;
             border: 3px solid white;
         }
@@ -112,7 +110,7 @@
         .about-header h1 {
             font-size: 3.5rem;
             margin-bottom: 0.5rem;
-            text-shadow: 3px 3px 0 #cc5500;
+            text-shadow: 3px 3px 0 var(--shadow);
         }
 
         .about-header h1 i {
@@ -146,24 +144,25 @@
             text-align: center;
             flex: 1;
             min-width: 250px;
-            border: 3px solid #ff9933;
-            box-shadow: 8px 8px 0 #ff9933;
+            border-width: 3px;
+            border-style: solid;
+            box-shadow: 8px 8px 0 var(--accent);
             transition: 0.3s;
         }
 
         .cow-card:hover {
             transform: translate(-4px, -4px);
-            box-shadow: 12px 12px 0 #ff6600;
+            box-shadow: 12px 12px 0 var(--primary);
         }
 
         .cow-photo {
             width: 150px;
             height: 150px;
             border-radius: 50%;
-            border: 5px solid #ff9933;
+            border-width: 5px;
+            border-style: solid;
             margin: 0 auto 1rem;
             overflow: hidden;
-            background: #fff4e6;
         }
 
         .cow-photo img {
@@ -174,12 +173,10 @@
 
         .cow-card h3 {
             font-size: 2rem;
-            color: #ff6600;
             margin-bottom: 0.5rem;
         }
 
         .cow-title {
-            background: #ff9933;
             color: white;
             padding: 0.3rem 1rem;
             border-radius: 30px;
@@ -189,7 +186,6 @@
         }
 
         .cow-bio {
-            color: #442200;
             line-height: 1.6;
         }
 
@@ -199,12 +195,12 @@
             border-radius: 30px;
             padding: 2rem;
             margin-bottom: 2rem;
-            border: 3px dashed #ff9933;
+            border-width: 3px;
+            border-style: dashed;
             position: relative;
         }
 
         .fun-facts h2 {
-            color: #ff6600;
             font-size: 2rem;
             margin-bottom: 1.5rem;
             display: flex;
@@ -219,19 +215,14 @@
         }
 
         .fact-item {
-            background: #fff4e6;
             padding: 1rem;
             border-radius: 20px;
             display: flex;
             align-items: center;
             gap: 10px;
             font-size: 1.1rem;
-            border: 1px solid #ffcc99;
-        }
-
-        .fact-item i {
-            color: #ff9933;
-            font-size: 1.5rem;
+            border-width: 1px;
+            border-style: solid;
         }
 
         /* Skills section */
@@ -240,11 +231,11 @@
             border-radius: 30px;
             padding: 2rem;
             margin-bottom: 2rem;
-            border: 3px solid #ff9933;
+            border-width: 3px;
+            border-style: solid;
         }
 
         .skills-section h2 {
-            color: #ff6600;
             font-size: 2rem;
             margin-bottom: 1.5rem;
         }
@@ -258,24 +249,17 @@
         .skill-item {
             text-align: center;
             padding: 1rem;
-            background: #fff4e6;
             border-radius: 20px;
             transition: 0.3s;
         }
 
-        .skill-item:hover {
-            transform: scale(1.05);
-            background: #ff9933;
-            color: white;
-        }
-
         .skill-item i {
             font-size: 2rem;
-            color: #ff6600;
             margin-bottom: 0.5rem;
         }
 
-        .skill-item:hover i {
+        .skill-item:hover {
+            transform: scale(1.05);
             color: white;
         }
 
@@ -295,36 +279,35 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #ff6600;
             font-size: 1.8rem;
-            border: 2px solid #ff9933;
+            border-width: 2px;
+            border-style: solid;
             transition: 0.3s;
             text-decoration: none;
         }
 
         .social-link:hover {
             transform: rotate(360deg) scale(1.1);
-            background: #ff6600;
             color: white;
         }
 
         /* Right sidebar */
         .right-sidebar {
             padding: 2rem;
-            border-left: 3px solid #ff9933;
+            border-left-width: 3px;
+            border-left-style: solid;
             background: white;
         }
 
         .mood-card {
-            background: #fff4e6;
             border-radius: 20px;
             padding: 1.5rem;
             margin-bottom: 1.5rem;
-            border: 2px dashed #ff9933;
+            border-width: 2px;
+            border-style: dashed;
         }
 
         .mood-card h3 {
-            color: #ff6600;
             margin-bottom: 1rem;
             display: flex;
             align-items: center;
@@ -340,16 +323,13 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            color: #442200;
         }
 
         .mood-list i {
-            color: #ff9933;
             width: 25px;
         }
 
         .xhs-handle {
-            background: #ff9933;
             color: white;
             padding: 1rem;
             border-radius: 50px;
@@ -365,12 +345,48 @@
             position: fixed;
             bottom: 12px;
             right: 20px;
-            color: #ff6600;
             font-weight: bold;
             background: white;
             padding: 5px 15px;
             border-radius: 30px;
-            border: 2px solid #ff9933;
+            border-width: 2px;
+            border-style: solid;
+            z-index: 100;
+        }
+
+        /* Theme Switcher */
+        .theme-switcher {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+            border: 2px solid #ddd;
+        }
+
+        .theme-dot {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: 0.2s;
+        }
+
+        .theme-dot:hover {
+            transform: scale(1.2);
+            border-color: #333;
+        }
+
+        .theme-dot.active {
+            border-color: #333;
+            transform: scale(1.1);
         }
 
         @media (max-width: 800px) {
@@ -384,20 +400,29 @@
     </style>
 </head>
 <body>
+    <!-- Theme Switcher Dots -->
+    <div class="theme-switcher">
+        <div class="theme-dot" style="background: #4A4A4A;" onclick="setTheme('gray')" title="Warm Gray"></div>
+        <div class="theme-dot" style="background: #6B4EFF;" onclick="setTheme('purple')" title="Creative Purple"></div>
+        <div class="theme-dot" style="background: #008080;" onclick="setTheme('teal')" title="Calm Teal"></div>
+        <div class="theme-dot" style="background: #5F6B4A;" onclick="setTheme('green')" title="Earthy Green"></div>
+        <div class="theme-dot" style="background: #4A5B6E;" onclick="setTheme('blue')" title="Blue Gray"></div>
+    </div>
+
 <div class="main-grid">
-    <!-- Left nav - orange style -->
-    <nav class="left-nav">
-        <a href="index.html" class="nav-item"><i class="fas fa-home"></i> Home</a>
-        <a href="lab.html" class="nav-item"><i class="fas fa-flask"></i> Lab</a>
-        <a href="notes.html" class="nav-item"><i class="fas fa-book"></i> Notes</a>
-        <a href="games.html" class="nav-item"><i class="fas fa-gamepad"></i> Games</a>
-        <a href="about.html" class="nav-item active"><i class="fas fa-info-circle"></i> About</a>
+    <!-- Left nav -->
+    <nav class="left-nav" id="leftNav">
+        <a href="index.html" class="nav-item" id="navHome"><i class="fas fa-home"></i> Home</a>
+        <a href="lab.html" class="nav-item" id="navLab"><i class="fas fa-flask"></i> Lab</a>
+        <a href="notes.html" class="nav-item" id="navNotes"><i class="fas fa-book"></i> Notes</a>
+        <a href="games.html" class="nav-item" id="navGames"><i class="fas fa-gamepad"></i> Games</a>
+        <a href="about.html" class="nav-item active" id="navAbout"><i class="fas fa-info-circle"></i> About</a>
     </nav>
 
     <!-- Center: About content -->
     <div class="center-stage">
         <!-- Fun header with cow ears -->
-        <div class="about-header">
+        <div class="about-header" id="aboutHeader">
             <div class="cow-ears">
                 <div class="ear left"></div>
                 <div class="ear right"></div>
@@ -412,88 +437,302 @@
 
         <!-- Two cow photos -->
         <div class="cow-family">
-            <div class="cow-card">
-                <div class="cow-photo">
+            <div class="cow-card" id="cowCard1">
+                <div class="cow-photo" id="cowPhoto1">
                     <img src="cow.jpg" alt="Mendy Original">
                 </div>
-                <h3>Mendy 1.0</h3>
-                <span class="cow-title">The Lost One</span>
+                <h3 id="cowName1">Mendy 1.0</h3>
+                <span class="cow-title" id="cowTitle1">The Lost One</span>
                 <p class="cow-bio">Started as a confused cow wondering where her passion went. Spent days staring at code and sipping grass.</p>
             </div>
 
-            <div class="cow-card">
-                <div class="cow-photo">
+            <div class="cow-card" id="cowCard2">
+                <div class="cow-photo" id="cowPhoto2">
                     <img src="cow1.jpg" alt="Mendy New">
                 </div>
-                <h3>Mendy 2.0</h3>
-                <span class="cow-title">The Builder</span>
+                <h3 id="cowName2">Mendy 2.0</h3>
+                <span class="cow-title" id="cowTitle2">The Builder</span>
                 <p class="cow-bio">Discovered that building stuff is fun! Now makes websites, games, and occasionally moos at bugs.</p>
             </div>
         </div>
 
         <!-- Fun Facts -->
-        <div class="fun-facts">
-            <h2><i class="fas fa-lightbulb"></i> Random Mendy Facts</h2>
+        <div class="fun-facts" id="funFacts">
+            <h2 id="funFactsTitle"><i class="fas fa-lightbulb"></i> Random Mendy Facts</h2>
             <div class="facts-grid">
-                <div class="fact-item"><i class="fas fa-code"></i> First line of code: "Hello World" (very original)</div>
-                <div class="fact-item"><i class="fas fa-bug"></i> Favorite bug: The ones that turn into features</div>
-                <div class="fact-item"><i class="fas fa-moon"></i> Works best after midnight</div>
-                <div class="fact-item"><i class="fas fa-coffee"></i> Powered by grass and coffee</div>
-                <div class="fact-item"><i class="fas fa-gamepad"></i> Lost in games she builds</div>
-                <div class="fact-item"><i class="fas fa-shield"></i> Blue teamer by day, game dev by night</div>
+                <div class="fact-item" id="fact1"><i class="fas fa-code"></i> First line of code: "Hello World"</div>
+                <div class="fact-item" id="fact2"><i class="fas fa-bug"></i> Favorite bug: The ones that turn into features</div>
+                <div class="fact-item" id="fact3"><i class="fas fa-moon"></i> Works best after midnight</div>
+                <div class="fact-item" id="fact4"><i class="fas fa-coffee"></i> Powered by grass and coffee</div>
+                <div class="fact-item" id="fact5"><i class="fas fa-gamepad"></i> Lost in games she builds</div>
+                <div class="fact-item" id="fact6"><i class="fas fa-shield"></i> Blue teamer by day, game dev by night</div>
             </div>
         </div>
 
-        <!-- Skills with icons -->
-        <div class="skills-section">
-            <h2><i class="fas fa-tools"></i> What Mendy Does</h2>
+        <!-- Skills -->
+        <div class="skills-section" id="skillsSection">
+            <h2 id="skillsTitle"><i class="fas fa-tools"></i> What Mendy Does</h2>
             <div class="skills-grid">
-                <div class="skill-item"><i class="fas fa-globe"></i><br>Web Dev</div>
-                <div class="skill-item"><i class="fas fa-mobile-alt"></i><br>App Dev</div>
-                <div class="skill-item"><i class="fas fa-paint-brush"></i><br>UX/XI Design</div>
-                <div class="skill-item"><i class="fas fa-video"></i><br>Video Editing</div>
-                <div class="skill-item"><i class="fas fa-shield-halved"></i><br>SOC Analyst</div>
-                <div class="skill-item"><i class="fas fa-dice"></i><br>Game Dev</div>
+                <div class="skill-item" id="skill1"><i class="fas fa-globe"></i><br>Web Dev</div>
+                <div class="skill-item" id="skill2"><i class="fas fa-mobile-alt"></i><br>App Dev</div>
+                <div class="skill-item" id="skill3"><i class="fas fa-paint-brush"></i><br>UX/XI Design</div>
+                <div class="skill-item" id="skill4"><i class="fas fa-video"></i><br>Video Editing</div>
+                <div class="skill-item" id="skill5"><i class="fas fa-shield-halved"></i><br>SOC Analyst</div>
+                <div class="skill-item" id="skill6"><i class="fas fa-dice"></i><br>Game Dev</div>
             </div>
         </div>
 
         <!-- Social links -->
         <div class="social-links">
-            <a href="#" class="social-link"><i class="fab fa-github"></i></a>
-            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="social-link"><i class="fab fa-itch-io"></i></a>
+            <a href="#" class="social-link" id="social1"><i class="fab fa-github"></i></a>
+            <a href="#" class="social-link" id="social2"><i class="fab fa-linkedin"></i></a>
+            <a href="#" class="social-link" id="social3"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link" id="social4"><i class="fab fa-itch-io"></i></a>
         </div>
     </div>
 
-    <!-- Right sidebar - Mood board -->
-    <div class="right-sidebar">
-        <div class="mood-card">
-            <h3><i class="fas fa-heart"></i> Current Mood</h3>
+    <!-- Right sidebar -->
+    <div class="right-sidebar" id="rightSidebar">
+        <div class="mood-card" id="moodCard">
+            <h3 id="moodTitle"><i class="fas fa-heart"></i> Current Mood</h3>
             <ul class="mood-list">
-                <li><i class="fas fa-cow"></i> 70% cow</li>
-                <li><i class="fas fa-laptop-code"></i> 80% coder</li>
-                <li><i class="fas fa-pizza"></i> 100% hungry</li>
+                <li id="mood1"><i class="fas fa-cow"></i> 70% cow</li>
+                <li id="mood2"><i class="fas fa-laptop-code"></i> 80% coder</li>
+                <li id="mood3"><i class="fas fa-pizza"></i> 100% hungry</li>
             </ul>
         </div>
 
-        <div class="mood-card">
-            <h3><i class="fas fa-music"></i> Dev Playlist</h3>
+        <div class="mood-card" id="playlistCard">
+            <h3 id="playlistTitle"><i class="fas fa-music"></i> Dev Playlist</h3>
             <ul class="mood-list">
-                <li><i class="fas fa-headphones"></i> Lo-fi cow beats</li>
-                <li><i class="fas fa-headphones"></i> Code & chill</li>
-                <li><i class="fas fa-headphones"></i> Bug hunting songs</li>
+                <li id="playlist1"><i class="fas fa-headphones"></i> Lo-fi cow beats</li>
+                <li id="playlist2"><i class="fas fa-headphones"></i> Code & chill</li>
+                <li id="playlist3"><i class="fas fa-headphones"></i> Bug hunting songs</li>
             </ul>
         </div>
 
-        <div class="xhs-handle">
+        <div class="xhs-handle" id="xhsHandle">
             <i class="fas fa-camera"></i> 小红书号: 94170383890
         </div>
     </div>
 </div>
 
-<div class="signature">
+<div class="signature" id="signature">
     <i class="fas fa-pen"></i> MUHAMMAD HUSNAIN · Mendy's human
 </div>
+
+<script>
+    function setTheme(theme) {
+        // Remove active class from all dots
+        document.querySelectorAll('.theme-dot').forEach(dot => {
+            dot.classList.remove('active');
+        });
+        
+        // Add active class to clicked dot
+        event.target.classList.add('active');
+        
+        // Define theme colors
+        const themes = {
+            gray: {
+                primary: '#4A4A4A',
+                secondary: '#6B6B6B',
+                accent: '#F4A261',
+                shadow: '#333333',
+                text: '#2D2D2D',
+                bg: '#F9F9F9',
+                lightBg: '#F0F0F0'
+            },
+            purple: {
+                primary: '#6B4EFF',
+                secondary: '#8A6EFF',
+                accent: '#FFB86B',
+                shadow: '#4A3A9E',
+                text: '#2D2D2D',
+                bg: '#F5F0FF',
+                lightBg: '#EAE5FF'
+            },
+            teal: {
+                primary: '#008080',
+                secondary: '#20B2AA',
+                accent: '#FFA07A',
+                shadow: '#006666',
+                text: '#2D2D2D',
+                bg: '#E0F2F1',
+                lightBg: '#C0E8E5'
+            },
+            green: {
+                primary: '#5F6B4A',
+                secondary: '#7F8C6B',
+                accent: '#D9B382',
+                shadow: '#3F4A2A',
+                text: '#2D2D2D',
+                bg: '#F5F2E9',
+                lightBg: '#E8E5D9'
+            },
+            blue: {
+                primary: '#4A5B6E',
+                secondary: '#6B7C8F',
+                accent: '#F4A261',
+                shadow: '#2A3B4E',
+                text: '#2D2D2D',
+                bg: '#F0F4F8',
+                lightBg: '#E0E8F0'
+            }
+        };
+        
+        const t = themes[theme];
+        
+        // Apply theme using the style element
+        let style = document.getElementById('theme-style');
+        if (!style) {
+            style = document.createElement('style');
+            style.id = 'theme-style';
+            document.head.appendChild(style);
+        }
+        
+        style.textContent = `
+            body {
+                background: ${t.bg};
+                color: ${t.text};
+            }
+            
+            .left-nav {
+                border-right-color: ${t.primary};
+            }
+            
+            .nav-item {
+                color: ${t.text};
+                border-bottom-color: ${t.lightBg};
+            }
+            
+            .nav-item i {
+                color: ${t.primary};
+            }
+            
+            .nav-item:hover {
+                color: ${t.primary};
+            }
+            
+            .nav-item.active {
+                color: ${t.primary};
+                border-bottom-color: ${t.primary};
+            }
+            
+            .about-header {
+                background: linear-gradient(135deg, ${t.primary}, ${t.secondary});
+                box-shadow: 0 10px 0 ${t.shadow};
+            }
+            
+            .ear {
+                background: ${t.primary};
+            }
+            
+            .cow-card {
+                border-color: ${t.primary};
+                box-shadow: 8px 8px 0 ${t.accent};
+            }
+            
+            .cow-card:hover {
+                box-shadow: 12px 12px 0 ${t.primary};
+            }
+            
+            .cow-photo {
+                border-color: ${t.primary};
+            }
+            
+            .cow-card h3 {
+                color: ${t.primary};
+            }
+            
+            .cow-title {
+                background: ${t.primary};
+            }
+            
+            .fun-facts {
+                border-color: ${t.primary};
+            }
+            
+            .fun-facts h2 {
+                color: ${t.primary};
+            }
+            
+            .fact-item {
+                background: ${t.bg};
+                border-color: ${t.lightBg};
+            }
+            
+            .fact-item i {
+                color: ${t.primary};
+            }
+            
+            .skills-section {
+                border-color: ${t.primary};
+            }
+            
+            .skills-section h2 {
+                color: ${t.primary};
+            }
+            
+            .skill-item {
+                background: ${t.bg};
+            }
+            
+            .skill-item i {
+                color: ${t.primary};
+            }
+            
+            .skill-item:hover {
+                background: ${t.primary};
+                color: white;
+            }
+            
+            .skill-item:hover i {
+                color: white;
+            }
+            
+            .social-link {
+                color: ${t.primary};
+                border-color: ${t.primary};
+            }
+            
+            .social-link:hover {
+                background: ${t.primary};
+                color: white;
+            }
+            
+            .right-sidebar {
+                border-left-color: ${t.primary};
+            }
+            
+            .mood-card {
+                background: ${t.bg};
+                border-color: ${t.primary};
+            }
+            
+            .mood-card h3 {
+                color: ${t.primary};
+            }
+            
+            .mood-list i {
+                color: ${t.primary};
+            }
+            
+            .xhs-handle {
+                background: ${t.primary};
+            }
+            
+            .signature {
+                border-color: ${t.primary};
+                color: ${t.text};
+            }
+        `;
+    }
+    
+    // Set default theme
+    window.onload = function() {
+        setTheme('gray');
+        document.querySelector('.theme-dot').classList.add('active');
+    };
+</script>
 </body>
 </html>
