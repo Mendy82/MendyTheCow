@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Labs · Mendy the SOC Analyst</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, sans-serif;
+            background: #f5f9ff;  /* Very light blue background */
+            color: #1a2b3c;
+            min-height: 100vh;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 260px 1fr 240px;
+            width: 100vw;
+            min-height: 100vh;
+        }
+
+        /* Left nav - updated with blue theme */
+        .left-nav {
+            padding: 2rem;
+            border-right: 2px solid #0066cc;
+            background: white;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 0.8rem 0;
+            color: #1a2b3c;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .nav-item i {
+            color: #0066cc;
+            width: 30px;
+        }
+
+        .nav-item:hover {
+            color: #0066cc;
+            transform: translateX(5px);
+        }
+
+        .nav-item.active {
+            color: #0066cc;
+            font-weight: 600;
+            border-right: 3px solid #0066cc;
+        }
+
+        /* Center content - Labs section */
+        .center-stage {
+            padding: 2rem;
+            overflow-y: auto;
+            max-height: 100vh;
+        }
+
+        /* Header with stats */
+        .labs-header {
+            background: linear-gradient(135deg, #0066cc, #004999);
+            color: white;
+            padding: 2rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-stats {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        /* Filter tabs for different lab types */
+        .lab-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 10px 25px;
+            background: white;
+            border-radius: 30px;
+            cursor: pointer;
+            border: 1px solid #0066cc;
+            color: #0066cc;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .tab:hover, .tab.active {
+            background: #0066cc;
+            color: white;
+        }
+
+        /* Labs grid */
+        .labs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        /* Lab cards - cybersecurity style */
+        .lab-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .lab-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 102, 204, 0.15);
+            border-color: #0066cc;
+        }
+
+        .lab-header {
+            background: linear-gradient(135deg, #1a2b3c, #2c3e50);
+            color: white;
+            padding: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .lab-type {
+            background: #00aaff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .lab-difficulty {
+            display: flex;
+            gap: 4px;
+        }
+
+        .difficulty-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #4a5b6b;
+        }
+
+        .difficulty-dot.filled {
+            background: #00ffaa;
+        }
+
+        .lab-content {
+            padding: 1.5rem;
+        }
+
+        .lab-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #1a2b3c;
+        }
+
+        .lab-description {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .lab-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .lab-meta i {
+            color: #0066cc;
+            margin-right: 5px;
+        }
+
+        .lab-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            background: #e6f0ff;
+            color: #0066cc;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .lab-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #f0f0f0;
+            padding-top: 15px;
+        }
+
+        .lab-progress {
+            flex: 1;
+            margin-right: 15px;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: #f0f0f0;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 5px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #0066cc;
+            width: 0%;
+        }
+
+        .progress-text {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .lab-button {
+            background: #0066cc;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .lab-button:hover {
+            background: #004999;
+        }
+
+        /* Right sidebar - SOC analyst style */
+        .right-sidebar {
+            padding: 2rem;
+            border-left: 2px solid #0066cc;
+            background: white;
+        }
+
+        .status-card {
+            background: #f5f9ff;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid #0066cc20;
+        }
+
+        .status-title {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #0066cc;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .soc-metrics {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: white;
+            border-radius: 10px;
+        }
+
+        .metric-value {
+            font-weight: bold;
+            color: #0066cc;
+        }
+
+        .alert-badge {
+            background: #ff4444;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+        }
+
+        .signature {
+            position: fixed;
+            bottom: 12px;
+            right: 20px;
+            color: #1a2b3c;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+<div class="main-grid">
+    <!-- Left nav (same structure) -->
+    <nav class="left-nav">
+        <a href="index.html" class="nav-item"><i class="fas fa-home"></i> Home</a>
+        <a href="lab.html" class="nav-item active"><i class="fas fa-flask"></i> Lab</a>
+        <a href="notes.html" class="nav-item"><i class="fas fa-book"></i> Notes</a>
+        <a href="games.html" class="nav-item"><i class="fas fa-gamepad"></i> Games</a>
+        <a href="about.html" class="nav-item"><i class="fas fa-info-circle"></i> About</a>
+    </nav>
+
+    <!-- Center: Labs content -->
+    <div class="center-stage">
+        <!-- Header with stats -->
+        <div class="labs-header">
+            <div>
+                <h1><i class="fas fa-shield-halved"></i> Mendy's Security Lab</h1>
+                <p>Blue Team training ground • SOC analyst in training</p>
+            </div>
+            <div class="header-stats">
+                <div class="stat">
+                    <div class="stat-number">24</div>
+                    <div class="stat-label">Rooms</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">Completed</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">156</div>
+                    <div class="stat-label">Flags</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter tabs -->
+        <div class="lab-tabs">
+            <span class="tab active">All Labs</span>
+            <span class="tab">WriteUps</span>
+            <span class="tab">Blue Team</span>
+            <span class="tab">SOC</span>
+            <span class="tab">Threat Hunting</span>
+            <span class="tab">Forensics</span>
+        </div>
+
+        <!-- Labs grid -->
+        <div class="labs-grid">
+            <!-- WriteUp Card -->
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span class="lab-type">WriteUp</span>
+                    <div class="lab-difficulty">
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot"></span>
+                        <span class="difficulty-dot"></span>
+                    </div>
+                </div>
+                <div class="lab-content">
+                    <h3 class="lab-title">TryHackMe: Blue Team Level 1</h3>
+                    <p class="lab-description">Detailed walkthrough of Windows event logs, SIEM basics, and incident detection.</p>
+                    <div class="lab-meta">
+                        <span><i class="fas fa-calendar"></i> Mar 2026</span>
+                        <span><i class="fas fa-clock"></i> 45 min read</span>
+                    </div>
+                    <div class="lab-tags">
+                        <span class="tag">Windows</span>
+                        <span class="tag">Event Logs</span>
+                        <span class="tag">SIEM</span>
+                    </div>
+                    <div class="lab-footer">
+                        <div class="lab-progress">
+                            <div class="progress-bar"><div class="progress-fill" style="width: 100%"></div></div>
+                            <span class="progress-text">Completed</span>
+                        </div>
+                        <a href="#" class="lab-button">Read</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blue Team Lab Card -->
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span class="lab-type">Blue Team</span>
+                    <div class="lab-difficulty">
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot"></span>
+                    </div>
+                </div>
+                <div class="lab-content">
+                    <h3 class="lab-title">SOC: Log Analysis 101</h3>
+                    <p class="lab-description">Hands-on with Apache logs, failed login detection, and brute force identification.</p>
+                    <div class="lab-meta">
+                        <span><i class="fas fa-terminal"></i> Interactive</span>
+                        <span><i class="fas fa-signal"></i> 12 tasks</span>
+                    </div>
+                    <div class="lab-tags">
+                        <span class="tag">Apache</span>
+                        <span class="tag">Logs</span>
+                        <span class="tag">Detection</span>
+                    </div>
+                    <div class="lab-footer">
+                        <div class="lab-progress">
+                            <div class="progress-bar"><div class="progress-fill" style="width: 60%"></div></div>
+                            <span class="progress-text">60% complete</span>
+                        </div>
+                        <a href="#" class="lab-button">Continue</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Threat Hunting Card -->
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span class="lab-type">Threat Hunt</span>
+                    <div class="lab-difficulty">
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot filled"></span>
+                    </div>
+                </div>
+                <div class="lab-content">
+                    <h3 class="lab-title">APT Simulation: Emulate & Detect</h3>
+                    <p class="lab-description">Advanced persistent threat simulation and detection using Atomic Red Team.</p>
+                    <div class="lab-meta">
+                        <span><i class="fas fa-skull"></i> APT29</span>
+                        <span><i class="fas fa-chart-line"></i> Advanced</span>
+                    </div>
+                    <div class="lab-tags">
+                        <span class="tag">MITRE ATT&CK</span>
+                        <span class="tag">Atomic</span>
+                    </div>
+                    <div class="lab-footer">
+                        <div class="lab-progress">
+                            <div class="progress-bar"><div class="progress-fill" style="width: 25%"></div></div>
+                            <span class="progress-text">Started</span>
+                        </div>
+                        <a href="#" class="lab-button">Start</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Forensics Card -->
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span class="lab-type">Forensics</span>
+                    <div class="lab-difficulty">
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot filled"></span>
+                        <span class="difficulty-dot"></span>
+                        <span class="difficulty-dot"></span>
+                    </div>
+                </div>
+                <div class="lab-content">
+                    <h3 class="lab-title">Memory Analysis with Volatility</h3>
+                    <p class="lab-description">Analyze a compromised Windows memory dump to find malware artifacts.</p>
+                    <div class="lab-meta">
+                        <span><i class="fas fa-memory"></i> 2GB dump</span>
+                        <span><i class="fas fa-bug"></i> 3 indicators</span>
+                    </div>
+                    <div class="lab-tags">
+                        <span class="tag">Volatility</span>
+                        <span class="tag">Memory</span>
+                    </div>
+                    <div class="lab-footer">
+                        <div class="lab-progress">
+                            <div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div>
+                            <span class="progress-text">Not started</span>
+                        </div>
+                        <a href="#" class="lab-button">Start</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right sidebar - SOC Dashboard -->
+    <div class="right-sidebar">
+        <div class="status-card">
+            <div class="status-title">
+                <i class="fas fa-shield-halved"></i> SOC Status
+            </div>
+            <div class="soc-metrics">
+                <div class="metric">
+                    <span>Active Alerts</span>
+                    <span class="metric-value">3 <span class="alert-badge">HIGH</span></span>
+                </div>
+                <div class="metric">
+                    <span>Open Cases</span>
+                    <span class="metric-value">12</span>
+                </div>
+                <div class="metric">
+                    <span>Avg Response</span>
+                    <span class="metric-value">4.2m</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="mood-item">
+            <span>hunting threats</span>
+            <i class="fas fa-search"></i>
+        </div>
+        <div class="mood-item">
+            <span>analyzing logs</span>
+            <i class="fas fa-file-lines"></i>
+        </div>
+        <div class="xhs-handle">
+            <i class="fas fa-camera"></i>
+            小红书号: 94170383890
+        </div>
+    </div>
+</div>
+
+<div class="signature">
+    <i class="fas fa-pen"></i> MUHAMMAD HUSNAIN · Blue Team
+</div>
+</body>
+</html>
